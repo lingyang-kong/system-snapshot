@@ -1,90 +1,95 @@
-# Virtual/runtime filesystems.
-/dev/**
-/proc/**
-/run/**
-/sys/**
-/tmp/**
-
-# Mount points / removable / temporary mount locations.
-/cdrom/**
-/media/**
-/mnt/**
-
-# Filesystem internals.
+# Runtime filesystems, mount points, and filesystem internals.
+/dev/
+/proc/
+/run/
+/sys/
+/tmp/
+/cdrom/
+/media/
+/mnt/
 /boot/lost+found/
 /lost+found/
-
-# Swap file.
 /swap.img
 
-# Already on the HDD, do not back up into the system mirror.
-/var/backups/**
-/var/crash/**
+# HDD Storage handled separately.
+#/srv/models/
+#/var/backups/local/
 
-# System-level rebuildable caches and bulky transient state.
-# These directory patterns exclude the directory itself and all contents.
+# Volatile and rebuildable system state.
+/var/crash/
 /var/cache/
 /var/lib/apt/lists/
 /var/lib/snapd/cache/
 /var/lib/systemd/coredump/
 /var/tmp/
 
-# User caches and generated tool state.
-# .cache covers pip, uv, torch, huggingface, npm/yarn XDG caches, Zed caches,
-# browser caches, and many other application caches.
-**/.cache/
+# User trash, caches, and generated application state.
+**/.Trash-[0-9]*/
 **/.local/share/Trash/
+**/.*cache/
+#**/.cache/
+#**/.ccache/
+#**/.mypy_cache/
+#**/.pytest_cache/
+#**/.ruff_cache/
+**/.tmp/
+#**/.codex/.tmp/
+**/.bun/install/cache/
+**/.tilelang/cache/
+**/.nv/ComputeCache/
+**/.triton/
+**/.nvidia-omniverse/logs/
+**/.config/google-chrome/
+**/.local/share/zed/
 
-# Remote editor/agent servers.
+# Remote development runtimes.
 /home/**/.antigravity/
-#/home/**/.cache/code-server/
+/home/**/code-server/
 /home/**/.continue/server/
 /home/**/.cursor-server/
 /home/**/.kiro-server/
-/home/**/.local/share/code-server/
 /home/**/.trae-server/
 /home/**/.vscode-server*/
 /home/**/.windsurf-server/
 /home/**/.zed_server/
 
-# AI coding agent disposable state.
-# Exclude bulky session/cache/log/checkpoint state.
-#**/.cache/Antigravity/
-#**/.cache/Google/Antigravity/
+# AI agent transient state.
+**/shell-snapshots/
 **/.claude/backups/
+**/.claude/*cache/
 **/.claude/debug/
 **/.claude/file-history/
-**/.claude/image-cache/
-**/.claude/paste-cache/
-**/.claude/plans/
 **/.claude/projects/*/*/tool-results/
 **/.claude/session-env/
-**/.claude/shell-snapshots/
 **/.claude/tasks/
 **/.claude/todos/
 **/.codex/cache/
+**/.codex/**/cache/
 **/.codex/logs/
-**/.codex/sessions/
-**/.config/Antigravity/CachedData/
-**/.config/Antigravity/Code Cache/
-**/.config/Antigravity/Crashpad/
-**/.config/Antigravity/GPUCache/
-**/.config/Antigravity/logs/
-**/.gemini/cache/
-**/.gemini/tmp/
+**/.codex/tmp/
+**/.config/Antigravity/*
+**/.gemini/*
 
-# Language/package manager caches outside ~/.cache.
+# Package managers and rebuildable environments.
 **/.cargo/git/
 **/.cargo/registry/
+**/.conda/envs/
 **/.conda/pkgs/
+**/anaconda3/envs/
+**/anaconda3/pkgs/
 **/.gradle/caches/
 **/.gradle/daemon/
+**/go/pkg/mod/
+**/go/pkg/sumdb/
 **/.ivy2/cache/
 **/.julia/compiled/
 **/.julia/logs/
 **/.m2/repository/
+**/.local/share/mamba/envs/
 **/.mamba/pkgs/
 **/.micromamba/pkgs/
+**/miniconda3/envs/
+**/miniconda3/pkgs/
 **/.node-gyp/
 **/.npm/
 **/.pnpm-store/
@@ -92,25 +97,14 @@
 **/.rustup/tmp/
 **/.sbt/
 **/.yarn/cache/
-**/anaconda3/pkgs/
-**/go/pkg/mod/
-**/go/pkg/sumdb/
-**/miniconda3/pkgs/
+**/unpacked_env/
 
-# ML/GPU/generated caches outside ~/.cache.
-**/.ccache/
-**/.nv/ComputeCache/
-**/.triton/
-
-# Project-local dependency/build state.
+# Project dependencies and build/test artifacts.
 **/*.pyc
 **/*.pyo
 **/.ipynb_checkpoints/
-**/.mypy_cache/
 **/.nox/
 **/.pixi/
-**/.pytest_cache/
-**/.ruff_cache/
 **/.terraform/
 **/.tox/
 **/.venv/
@@ -118,7 +112,8 @@
 **/node_modules/
 **/venv/
 
-# Optional huge/volatile stores.
-/var/lib/containers/**
-/var/lib/docker/**
-/var/lib/libvirt/images/**
+# Optional large stores and downloaded models.
+/var/lib/containers/
+/var/lib/docker/
+/var/lib/libvirt/images/
+**/models--*--*/

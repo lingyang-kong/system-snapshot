@@ -67,8 +67,7 @@ install -m 644 btrbk.conf rsync.exclude system-snapshot.rc /etc/system-snapshot/
 install -m 755 system-snapshot /usr/local/sbin/
 
 # systemd units
-install -m 644 system-snapshot.service system-snapshot.timer \
-    /etc/systemd/system/
+install -m 644 system-snapshot.service system-snapshot.timer /etc/systemd/system/
 
 # State directory + snapshots dir
 install -m 700 -d /var/lib/system-snapshot
